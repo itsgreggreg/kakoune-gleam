@@ -7,6 +7,7 @@
 hook global BufCreate .*[.](gleam) %{
     set-option buffer filetype gleam
     set-option buffer comment_line '//'
+    set-option buffer indentwidth 2
 }
 
 # Initialization
@@ -38,7 +39,7 @@ add-highlighter shared/gleam/module_doc       region "////" "$"                 
 add-highlighter shared/gleam/documentation    region "///" "$"                            fill documentation
 add-highlighter shared/gleam/line_comment     region "//" "$"                             fill comment
 
-add-highlighter shared/gleam/code/            regex \b[a-z][a-z_]*\b               0:variable
+add-highlighter shared/gleam/code/            regex \b[a-z][a-z_0-9]*\b            0:variable
 add-highlighter shared/gleam/code/            regex \b[A-Z]\w*\b                   0:type
 add-highlighter shared/gleam/code/            regex \b_\w*\b                       0:comment
 add-highlighter shared/gleam/code/            regex fn\s([a-z]\w*)\b               1:function
@@ -92,3 +93,5 @@ define-command -hidden gleam-indent-on-closing %[
 ]
 
 §
+
+
